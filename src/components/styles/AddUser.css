@@ -1,0 +1,228 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(../../../images/img.jpg);
+    background-size: cover;
+    opacity: 0.7;
+    max-width: 100%;
+    /* background-color: #f2f2f2; */
+    /* background: linear-gradient(197deg, rgba(109, 40, 40, 0.8), rgba(255,0,0,0) 80%),            linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),            linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%); */
+}
+
+.bgImg{
+    background: url(../../../images/img.jpg) repeat;
+    /* background-repeat: no-repeat; */
+    background-size: cover;
+    border-radius: 30px;
+}
+
+.form{
+    margin: 5%;
+    font-weight: bold;
+    color: #000000;
+}
+
+.container{
+    border: 2px solid grey;
+    border-radius: 30px;
+    padding: 50px;
+    width:90vw;
+    margin: 30px auto;
+    /* box-shadow: 10px 10px lightslategrey; */
+    /* background-color: #f2f2f2;  */
+    background-color: #ffffff;
+    opacity: 0.7;
+}
+
+.header{
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 650;
+    font-family: 'Times New Roman', Times, serif;
+    color: orangered;
+    margin: 10px 0px;
+}
+
+/* .form_head,p{
+    font-size: 1.2rem;
+    font-weight: 555;
+}
+
+.form_head{
+    margin-bottom: 8px;
+} */
+
+.head{
+    font-size: 1.2rem;  
+    font-weight: 555;
+    margin-bottom: 8px;
+}
+
+input[type=text],[type=email],[type=tel],[type=url],select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+textarea{
+    width: 100%;
+    min-height: 75px;
+    max-height: 100px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+#date{
+    margin: 10px 15px 15px 15px;
+    padding: 5px 25px;
+    width: 20%;
+    font-size: 1.1rem;
+}
+
+.businessType{
+    font-size: 1.2rem;  
+    font-weight: 555;
+    margin-bottom: -5px;
+}
+
+.criticalAccount, .payOption{
+    font-size: 1.2rem;  
+    font-weight: 555;
+    margin-bottom: 15px;
+}
+
+.account{
+    margin-bottom: -15px;
+}
+.accountLabel{
+    display: inline-block;
+    margin-bottom: 15px;
+    margin-left: 10px;
+}
+
+.payOption{
+    margin-top: 10px;
+    margin-bottom: -8px;
+}
+
+input[type=radio]{
+    margin-left: 45px;  
+    height: 15px; 
+    margin-bottom: 15px;
+}
+
+.business,.payment{
+    padding: 8px 10px;
+}
+
+#img{
+    margin: 10px 15px 15px 15px;
+    padding: 5px 25px;
+    width: 30%;
+}
+
+input[type=checkbox]{
+    margin-left: 25px;
+    height: 15px;
+    margin-top: 10px;
+}
+
+.account{
+    margin-left: 10px;
+}
+
+.error{
+    display: block;
+    width:100%;
+    margin-top: 0.25rem;
+    font-size: .875rem;
+    color: red;
+    text-align: center;
+}
+
+.error-border{
+    border:2px solid #dc3545!important;
+} 
+
+.error-select{
+    color: red;
+}
+
+input[type=reset]{
+    width: 25%;
+    height: 60px;
+    background-color: #4CAF50;
+    color: black;
+    font-weight: bold;
+    font-size: 1.8rem;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 8px 20px;
+    margin: 15px 10% 1px 10%;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.submit{
+    width: 25%;
+    height: 60px;
+    background-color: #4CAF50;
+    color: black;
+    font-weight: bold;
+    font-size: 1.8rem;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 8px 20px;
+    margin: 15px 10% 1px 13%;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.cancel{
+    width: 25%;
+    height: 60px;
+    background-color: tomato;
+    color: black;
+    font-weight: bold;
+    font-size: 1.8rem;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 8px 20px;
+    margin: 15px 10% 1px 13%;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    text-align: center;
+}
+  
+.submit:hover {
+    background-color: #19c722;
+    color: white;
+}
+
+input[type=reset]:hover {
+    background-color: #45a049;
+    color: white;
+}
+
+.cancel:hover{
+    background-color: orangered;
+    color: white;
+}

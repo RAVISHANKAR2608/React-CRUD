@@ -1,0 +1,91 @@
+.addButton{
+    padding: 2px 5px;
+    margin: 10px 0px 0px 50px;
+    background-color: aqua;
+    color: black;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    
+}
+
+.addButton:hover{
+    background-color: blueviolet;
+    color: white;
+}
+
+table,th,td{
+    border: 1px solid;
+    border-collapse: collapse;
+    margin: 10px 0% 25px 0%;
+}
+
+#table{
+    width: 100%;
+    margin-top: 40px;
+    margin-left: 0px;
+    outline: #4CAF50;
+}
+
+th{
+    text-align: center;
+    font-size: 1.1rem;
+    background-color: whitesmoke;
+    padding: 10px 3px;
+}
+
+td{
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    padding: 1px 3px;
+}
+
+.editButton{
+    background-color: greenyellow;
+    width: 65px;
+    padding: 2px;
+    margin: 3px;  
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.editButton:hover{
+    background-color: green;
+    color: white;
+}
+
+.deleteButton{
+    background-color: red;
+    width: 65px;
+    padding:2px;
+    margin: 3px;    
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.deleteButton:hover{
+    background-color: darkred;
+    color: white;
+}
+
+.action{
+    width: fit-content;
+}
+
+.viewButton{
+    background-color: blue;
+    width: 65px;
+    padding:2px;
+    margin: 3px;    
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.viewButton:hover{
+    background-color: darkred;
+    color: white;
+}

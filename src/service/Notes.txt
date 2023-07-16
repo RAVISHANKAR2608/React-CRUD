@@ -1,0 +1,337 @@
+import React, { useState, useEffect } from 'react';
+import { useNavigate, Link, useParams } from 'react-router-dom';
+import '../styles/AddUser.css';
+
+const AddUser = () => {
+  const navigate = useNavigate();
+  const { i } = useParams();
+  const [array, setArray] = useState();
+  const [user, setUser] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    website: '',
+    contactName: '',
+    contactPhone: '',
+    contactEmail: '',
+    notes: '',
+    business: '',
+    category: [],
+    commission: '',
+    date: '',
+    img: '',
+    // account: '',
+    payment: ''
+  })
+  const [errors,setErrors] = useState(false); 
+  const [select,setSelect] = useState([]);
+  // const [show,setShow] = useState(false);
+  // const {name,email,phone,website,contactName,contactPhone,contactEmail,notes,business,category,commission,date,img,account,payment} = user;
+
+  useEffect(() => {
+    //console.log("useEffect by rendering only once")
+    /* console.log(localStorage.getItem('formData') || [],"Text")
+    console.log(localStorage.getItem('formData')?"x":"y") */
+    const items = JSON.parse(localStorage.getItem('users') || "[]");
+    // console.log(items,"Items in LocalStorage at Initial rendering");
+    if (items.length) {
+      setArray(items);
+    } else {
+      setArray([]);
+    }
+  }, []);
+  // console.log(array,"Array in Local Storage")
+
+  useEffect(() => {
+    const users = JSON.parse(localStorage.getItem('users'));
+    // console.log(users[i],"users")
+    if (i) {
+      console.log(users[i], "users in Edit")
+      let { name, email, phone, website, contactName, contactPhone, contactEmail, notes, business, category, commission, date, account, payment } = users[i];
+      setUser({ name, email, phone, website, contactName, contactPhone, contactEmail, notes, business, category, commission, date, account, payment });
+      // setUser(users[i])
+    }
+  }, [i])
+
+  const onInputChange = (e) => {
+    // console.log(user,"Form data")
+    setUser({ ...user, [e.target.name]: e.target.value })
+  }
+
+  const multiInput = (e) => {
+    let data = select;
+    data.push(e.target.value);
+    setSelect(data)
+  }
+  console.log(select,"Multi Selected Option")
+
+  /* let errorMessage = {
+    name: "Name is Required",
+    email: "Email is Required",
+    phone: "Phone is Required",
+    website: "Website is required",
+  }
+  console.log(errorMessage.name,"Error Message in Name") */
+
+ /*  const validateUser = () => {
+    let keys = Object.keys(user);
+    console.log(keys, "Keys in Validation")
+    // let values = Object.values(user)
+
+    for(let key in keys){
+      if(user[key] === ""){
+        (
+          // alert(`Your ${key} is Required`) 
+          console.log(key,"Error")  
+        )
+      }
+    } */
+
+    /* for(let key in keys){
+      // let empty ;
+      <>
+        {user[key] === "" ?
+            console.log(key,"Empty Key") : null
+        }
+      </>
+    } */
+    
+    /* for (let key in keys) {
+      return (
+        <>
+          {user[key] === "" ?
+            (alert(`Your ${key} is Required`)
+              // console.log("Error")   
+            ):null}
+        </>
+      )
+    } */
+
+    /* Object.keys(user).map((value,i) => {
+      if(user[value].length > 0){
+        return(
+          <p key={i}>{value} {user[value]}</p> 
+        )
+      }
+      else{
+        return '';
+      }
+    }) */
+  // }
+
+  const handleSubmit = (e) => {
+    let keys = Object.keys(user);
+    e.preventDefault();
+    /* for (let key of keys){
+      if(!user[key] || user[key] === ""){
+        // alert(`${capitalizeFirstLetter(key)} field cannot be empty`);
+        setErrors(true);
+        return alert("Please Fill All Required Fields");  
+    }
+  } */
+      i ? updateUser(i) : setArray(prev => [...(prev || []), user]);
+
+    setUser({
+      name: '',
+      email: '',
+      phone: '',
+      website: '',
+      contactName: '',
+      contactPhone: '',
+      contactEmail: '',
+      notes: '',
+      business: '',
+      category: '',
+      commission: '',
+      date: '',
+      img: '',
+      // account: '',
+      payment: '',
+    })
+    setSelect('');
+
+    setTimeout(() => {
+      navigate('/')
+    }, 10)
+  }
+
+  /* const handleSubmit = (e) => {
+      e.preventDefault();
+      console.log(user,"Form data on Submit");
+      if(user.name===''){
+        alert("Please Enter Name")
+      }else if(user.email===''){
+        alert("Please enter Email Address")
+      }else if(!validateEmail(user.email)){
+        alert('Please Enter Valid Email')
+      }else if(user.phone===''){
+        alert('Please Enter Phone Number')
+      }else if(user.contactName===''){
+        alert("Please Enter Contact Name")
+      }else if(user.contactEmail===''){
+        alert("Please enter Email Address")
+      }else if(!validateEmail(user.contactEmail)){
+        alert('Please Enter Valid Email')
+      }else if(user.contactPhone===''){
+        alert('Please Enter Contact Phone Number')
+      }else if(user.website===''){
+        alert('Please Enter Website')
+      }else if(!validateURL(user.website)){
+        alert('Please Enter valid URL')
+      }else if(user.notes===''){
+        alert('Please Enter Notes')
+      }else if(user.business===''){
+        alert('Please Select Business Type')
+      }else if(user.category===''){
+        alert('Please Enter Category')
+      }else if(user.commission===''){
+        alert('Please Enter Commission Percentage')
+      }else if(user.date===''){
+        alert('Please Enter Date')
+      }else if(user.payment===''){
+        alert('Please Select Payment Options')
+      }else{
+
+        i ? updateUser(i) : setArray(prev=>[...(prev||[]),user]);
+
+        setUser({
+          name:'',
+          email:'',
+          phone:'',
+          website:'',
+          contactName:'',
+          contactPhone:'',
+          contactEmail:'',
+          notes:'',
+          business:'',
+          category:'',
+          commission:'',
+          date:'',
+          img:'',
+          account:'',
+          payment:'',    
+      })
+
+        setTimeout(()=>{
+          navigate('/')
+        },500)
+    }
+  } */
+
+  const updateUser = (i) => {
+    let { name, email, phone, website, contactName, contactPhone, contactEmail, notes, business, category, commission, date, img, account, payment } = user;
+    let total = [...array];
+    total.splice(i, 1, { name, email, phone, website, contactName, contactPhone, contactEmail, notes, business, category, commission, date, img, account, payment });
+
+    setArray(total);
+  }
+
+  useEffect(() => {
+    if (array?.length) {
+      localStorage.setItem("users", JSON.stringify([...array]));
+    }
+  }, [array])
+
+  // console.log(array,"Array")
+
+  return (
+    <div className='bgImg'>
+      <div className="container">
+        <h1 className="header">New Business</h1>
+        <form action="#" name="form">
+          {/* <legend>Personal details</legend> */}
+          <label htmlFor="name" className="head">Name <span style={{ color: "orangeRed" }}><sup>*</sup></span></label><br />
+          <input type="text" id="name" name="name" value={user.name} placeholder='Enter Your Name' className={`${errors&&user.name.length<=0?"error-border":""}`} onChange={e => onInputChange(e)} required /><br />
+            {errors&&user.name.length<=0?<p className='error'>Name can't be Empty</p>:""}
+          <label htmlFor="email" className="head">Email <span style={{ color: "orangeRed" }}><sup>*</sup></span></label><br />
+          <input type="email" id="email" name="email" value={user.email} placeholder='Enter Your Email' className={`${errors&&user.email.length<=0?"error-border":""}`} onChange={e => onInputChange(e)} required /><br />
+            {errors&&user.email.length<=0?<p className='error'>Email can't be Empty</p>:""}
+          <label htmlFor="phone" className="head">Phone <span style={{ color: "orangeRed" }}><sup>*</sup></span></label><br />
+          <input type="tel" id="phone" name="phone" value={user.phone} placeholder='Enter Your Phone Number' className={`${errors&&user.phone.length<=0?"error-border":""}`} maxLength={10} onChange={e => onInputChange(e)} required /><br />
+            {errors&&user.phone.length<=0?<p className='error'>Phone can't be Empty</p>:""}
+          <label htmlFor="website" className="head">Website <span style={{ color: "orangeRed" }}><sup>*</sup></span></label><br />
+          <input type="url" id="website" name="website" value={user.website} placeholder='Enter Your Website' className={`${errors&&user.website.length<=0?"error-border":""}`} onChange={e => onInputChange(e)} required /><br />
+            {errors&&user.website.length<=0?<p className='error'>Website can't be Empty</p>:""}
+          <label htmlFor="contactName" className="head">Contact Name <span style={{ color: "orangeRed" }}><sup>*</sup></span></label><br />
+          <input type="text" id="contactName" name="contactName" value={user.contactName} placeholder='Enter Your Name' className={`${errors&&user.contactName.length<=0?"error-border":""}`} onChange={e => onInputChange(e)} required /><br />
+            {errors&&user.contactName.length<=0?<p className='error'>Contact Name can't be Empty</p>:""}
+          <label htmlFor="contactPhone" className="head">Contact Phone <span style={{ color: "orangeRed" }}><sup>*</sup></span></label><br />
+          <input type="tel" id="contactPhone" name="contactPhone" value={user.contactPhone} placeholder='Enter Your Phone Number' className={`${errors&&user.contactPhone.length<=0?"error-border":""}`} maxLength={10} onChange={e => onInputChange(e)} required /><br />
+            {errors&&user.contactPhone.length<=0?<p className='error'>Contact Phone can't be Empty</p>:""}
+          <label htmlFor="contactEmail" className="head">Contact Email <span style={{ color: "orangeRed" }}><sup>*</sup></span></label><br />
+          <input type="email" id="contactEmail" name="contactEmail" value={user.contactEmail} placeholder='Enter Your Email' className={`${errors&&user.contactEmail.length<=0?"error-border":""}`} onChange={e => onInputChange(e)} required /><br />
+            {errors&&user.contactEmail.length<=0?<p className='error'>Contact Email can't be Empty</p>:""}
+          <label htmlFor="notes" className="head">Notes</label><br />
+          <textarea id="notes" cols="45" rows="5" name="notes" value={user.notes} className={`${errors&&user.notes.length<=0?"error-border":""}`} onChange={e => onInputChange(e)} required></textarea><br />
+            {errors&&user.notes.length<=0?<p className='error'>Notes can't be Empty</p>:""}
+
+          <p className="businessType" value={user.business}>Business Type <span style={{ color: "orangeRed" }}><sup>*</sup></span> : {user.business} </p><br />
+          <input type="radio" name="business" id="small business" value="Small Business" className={`${errors&&user.business.length<=0?"error-border":""}`} onChange={e => onInputChange(e)} />
+          <label htmlFor="small business" className="business">Small Business</label>
+          <input type="radio" name="business" id="enterprise" value="Enterprise" className={`${errors&&user.business.length<=0?"error-border":""}`} onChange={e => onInputChange(e)} />
+          <label htmlFor="enterprise" className="business">Enterprise</label>
+          <input type="radio" name="business" id="entrepreneur" value="Entrepreneur" className={`${errors&&user.business.length<=0?"error-border":""}`} onChange={e => onInputChange(e)} />
+          <label htmlFor="entrepreneur" className="business">Entrepreneur</label><br />
+            {errors&&user.business.length<=0?<p className='error'>Business Type can't be Empty</p>:""}
+
+          {/* <label htmlFor="category" className="head">Category <span style={{ color: "orangeRed" }}><sup>*</sup></span> : {user.category} </label><br />
+          <select name="category" value={user.category} id="category" placeholder='Select Category' className={`${errors&&user.category.length<=0?"error-border":""}`} onChange={e => onInputChange(e)} required>
+            <option value="" disabled default hidden >Choose a Category</option>
+            <option name="category" value="Clothes">Clothes</option>
+            <option name="category" value="Toys">Toys</option>
+            <option name="category" value="Groceries">Groceries</option>
+            <option name="category" value="Electronics">Electronics</option>
+            <option name="category" value="Digital">Digital</option>
+          </select><br />
+            {errors&&user.category.length<=0?<p className='error'>Category can't be Empty</p>:""} */}
+          <p className=' head category' value={select}>Category <span style={{ color: "orangeRed" }}><sup>*</sup></span> : {select}</p>
+          <input type="checkbox" id="clothes" name="category" value="Clothes" className='category' onChange={e => multiInput(e)} />
+            <label htmlFor="clothes" className='categoryLabel'>Clothes</label>
+          <input type="checkbox" id="toys" name="category" value="Toys" className='category' onChange={e => multiInput(e)} />
+            <label htmlFor="toys" className='categoryLabel'>Toys</label>
+          <input type="checkbox" id="groceries" name="category" value="Groceries" className='category' onChange={e => multiInput(e)} />
+            <label htmlFor="groceries" className='categoryLabel'>Groceries</label>
+          <input type="checkbox" id="electronics" name="category" value="Electronics" className='category' onChange={e => multiInput(e)} />
+            <label htmlFor="electronics" className='categoryLabel'>Electronics</label>
+          <input type="checkbox" id="digital" name="category" value="Digital" className='category' onChange={e => multiInput(e)} />
+            <label htmlFor="digital" className='categoryLabel'>Digital</label><br />
+         
+
+          <label htmlFor="commission" className="head">Commission Percentage <span style={{ color: "orangeRed" }}><sup>*</sup></span></label>
+          <input type="text" id="commission" name="commission" value={user.commission} placeholder="Enter Your Commission Percentage" className={`${errors&&user.commission.length<=0?"error-border":""}`} onChange={e => onInputChange(e)} required /><br />
+            {errors&&user.commission.length<=0?<p className='error'>Commission can't be Empty</p>:""}
+  
+          <label htmlFor="date" className="head">Active From <span style={{ color: "orangeRed" }}><sup>*</sup></span></label>
+          <input type="date" name="date" value={user.date} id="date" onChange={e => onInputChange(e)} className={`${errors&&user.date.length<=0?"error-border":""}`} required /><br />
+            {errors&&user.date.length<=0?<p className='error'>Date can't be Empty</p>:""}
+  
+          <label htmlFor="img" className="head">Select image <span style={{ color: "orangeRed" }}><sup>*</sup></span></label>
+          <input type="file" id="img" name="img" value={user.img} accept="image/*" className={`${errors&&user.img.length<=0?"error-border":""}`} onChange={e => onInputChange(e)} required /> <br />
+            {errors&&user.img.length<=0?<p className='error'>Image can't be Empty</p>:""}
+
+          <p className="criticalAccount">Critical Account <span style={{ color: "orangeRed" }}><sup>*</sup></span></p><br />
+          <input type="checkbox" name="account" id="account" value="Success" checked={select} onChange={e=>setSelect(prev=>!prev)} />
+          <label htmlFor="account" className="account">To represent whether the account is critical so that we can provide extra care in case of any queries. </label><br />
+            {errors&&user.account?<p className='error'>Select Critical Account</p>:""}
+
+          <p className="payOption">Payment Options <span style={{ color: "orangeRed" }}><sup>*</sup></span> : {user.payment} </p><br />
+          <input type="radio" name="payment" id="COD" value="Cash on Delivery" className={`${errors&&user.payment.length<=0?"error-border":""}`} onChange={e => onInputChange(e)} />
+          <label htmlFor="COD" className="payment">Cash on Delivery</label>
+          <input type="radio" name="payment" id="UPI" value="UPI" className={`${errors&&user.payment.length<=0?"error-border":""}`} onChange={e => onInputChange(e)} />
+          <label htmlFor="UPI" className="payment">UPI</label>
+          <input type="radio" name="payment" id="Card Payment" value="Card Payment" className={`${errors&&user.payment.length<=0?"error-border":""}`} onChange={e => onInputChange(e)} />
+          <label htmlFor="Card Payment" className="payment">Card Payment</label><br />  
+            {errors&&user.payment.length<=0?<p className='error'>Payment Option can't be Empty</p>:""}
+
+          {/* <Link to="/"><input type="submit" value="Submit" /></Link> */}
+          <button type="submit" className='submit' onClick={handleSubmit}>{i ? "Update" : "Add"} User</button>
+          {/* <button type="button" className="submit" onClick={!show?handleSubmit:updateData}>{!show?`Submit`:`Update`}</button> */}
+          {/* <input type="reset" value="Reset" /> */}
+          <Link to="../"><button className='cancel'>Cancel</button></Link>
+        </form>
+      </div>
+    </div>
+  )
+}
+
+export default AddUser;

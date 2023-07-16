@@ -1,0 +1,31 @@
+.backButton{
+    background-color: #03a9f4;
+    border: white;
+    padding: 3px 5px;
+    margin: 10px auto 20px auto;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+.backButton:hover{
+    background-color: aqua;
+    color: black;
+}
+
+.index{
+    color: orangered;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+ul{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 10px;
+    list-style-type: square;
+}
+
+li{
+    padding: 4px;
+}
